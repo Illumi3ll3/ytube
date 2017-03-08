@@ -5,48 +5,28 @@
  */
 package com.example;
 
+import com.google.api.services.youtube.model.SearchResult;
+import java.util.ArrayList;
 import java.util.List;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  *
  * @author Mihai
  */
-@RestController
-@RequestMapping("/url")
+@PropertySource("classpath:application.properties")
+
 public class channel {
 
-    @RequestMapping(method = GET)
-    public List<Object> list() {
-        return null;
+    String name;
+    List<Video> videos = new ArrayList<> ();
+
+    public channel(String name) {
+        this.name = name;
     }
 
-    @RequestMapping(value = "/{id}", method = GET)
-    public Object get(@PathVariable String id) {
-        return null;
-    }
+    public List<SearchResult> getVideos() {
 
-    @RequestMapping(value = "/{id}", method = PUT)
-    public ResponseEntity<?> put(@PathVariable String id, @RequestBody Object input) {
-        return null;
+        return YoutubeClient.executeRequest (name);
     }
-
-    @RequestMapping(value = "/{id}", method = POST)
-    public ResponseEntity<?> post(@PathVariable String id, @RequestBody Object input) {
-        return null;
-    }
-
-    @RequestMapping(value = "/{id}", method = DELETE)
-    public ResponseEntity<Object> delete(@PathVariable String id) {
-        return null;
-    }
-
 }

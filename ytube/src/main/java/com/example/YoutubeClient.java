@@ -29,7 +29,7 @@ public class YoutubeClient {
     static YouTube youtube;
     static String apiKey = "AIzaSyDES1yfPv94DchUzYnFmRgLXJfATDVrp6M";
 
-    {
+    static {
         youtube = new YouTube.Builder (new NetHttpTransport (), new JacksonFactory (), new HttpRequestInitializer () {
             public void initialize(HttpRequest request) throws IOException {
             }
